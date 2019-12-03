@@ -49,7 +49,8 @@ module.exports = {
             .singleton()
             .inject(() => ({
               config: apiServiceConfig,
-              dbDependentInjections: () => DBDependentInjections(composer.container),
+              dbDependentInjections: () =>
+                DBDependentInjections(composer.container, { config: apiServiceConfig }),
             })),
       });
   },

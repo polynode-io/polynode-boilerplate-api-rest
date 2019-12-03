@@ -30,7 +30,7 @@ const awilix = require('awilix');
 
 const validNamespaces = ['routes', 'models', 'controllers'];
 
-module.exports = container => {
+module.exports = (container, { config }) => {
   const log = container.resolve('log');
 
   const getDependencyName = (modulePath, name) => {
@@ -68,8 +68,6 @@ module.exports = container => {
   };
 
   return new Promise((resolve, reject) => {
-    const config = container.resolve('config');
-
     container.loadModules(
       [
         [
