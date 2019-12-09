@@ -33,15 +33,17 @@ const validNamespaces = ['routes', 'models', 'controllers'];
 module.exports = (container, { config }) => {
   const log = container.resolve('log');
 
+  log.trace({ msg: 'DB Dependent injections executing...' });
+
   const getDependencyName = (modulePath, name) => {
     const splat = modulePath.split('/');
     let i = 2;
     const lasts = [];
-    log.trace('getDependencyName start.');
+    log.trace({ msg: 'getDependencyName start.' });
     do {
       const tNamespace = splat[splat.length - i];
       if (validNamespaces.indexOf(tNamespace) > -1) {
-        log.trace('valid namespace: ', tNamespace);
+        log.trace({ msg: 'valid namespace: ' + tNamespace });
         const rootName = lasts.join('');
         const forceSingular = tNamespace === 'models' || tNamespace === 'controllers';
 
@@ -56,7 +58,7 @@ module.exports = (container, { config }) => {
 
         const ret = rootName + name + moduleTypeName;
 
-        log.trace(modulePath + ' resolves to: ', ret);
+        log.trace({ msg: modulePath + ' resolves to: ' + ret });
 
         return ret;
       } else {
@@ -68,6 +70,8 @@ module.exports = (container, { config }) => {
   };
 
   return new Promise((resolve, reject) => {
+    log.trace({ msg: '[polynode-boilerplate-api-rest] Promise starts.' });
+
     container.loadModules(
       [
         [
@@ -97,7 +101,7 @@ module.exports = (container, { config }) => {
     routeModules.forEach(({ path: modulePath, name }, idx: number) => {
       const isLast = idx === routeModules.length - 1;
       const depName = getDependencyName(modulePath, name);
-      log.debug('Resolving module: ', depName);
+      log.debug({ msg: 'Resolving module:  ' + depName });
       container.resolve(depName);
       if (isLast) {
         resolve(true);
