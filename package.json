@@ -1,6 +1,6 @@
 {
   "name": "polynode-boilerplate-api-rest",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "REST API boilerplate for Polynode",
   "main": "build/index.js",
   "scripts": {
