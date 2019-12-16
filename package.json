@@ -1,6 +1,6 @@
 {
   "name": "polynode-boilerplate-api-rest",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "REST API boilerplate for Polynode",
   "main": "build/index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/polynode-io/polynode-boilerplate-api-rest#readme",
   "dependencies": {
-    "polynode-boilerplate-webserver": "^0.1.1"
+    "polynode-boilerplate-webserver": "^0.1.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
