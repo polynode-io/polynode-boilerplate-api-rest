@@ -27,13 +27,7 @@
  */
 
 const APIService = async depsContainer => {
-  const log = depsContainer.log;
-  const db = depsContainer.db;
-  const webServer = await depsContainer.webServer;
-  const dbDependentInjections = depsContainer.dbDependentInjections;
-
-  log.debug('inside apiService, webserver is: ', webServer);
-  db.onConnectActions.push(async () => dbDependentInjections(depsContainer));
+  await depsContainer.webServer;
 };
 
 module.exports = APIService;

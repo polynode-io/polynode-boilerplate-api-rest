@@ -28,7 +28,6 @@
 
 const WebServer = require('polynode-boilerplate-webserver');
 const RestAPIService = require('./Service');
-const DBDependentInjections = require('./DBDependentInjections');
 
 module.exports = {
   injector: (composer, forwardOpts) => {
@@ -49,8 +48,6 @@ module.exports = {
             .singleton()
             .inject(() => ({
               config: apiServiceConfig,
-              dbDependentInjections: () =>
-                DBDependentInjections(composer.container, { config: apiServiceConfig }),
             })),
       });
   },
